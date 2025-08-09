@@ -34,7 +34,7 @@ export class Lexer {
         let token: Token;
 
         this.skipWhitespace();
-        console.log(`1. this.ch=[${this.ch}]`);
+        // console.log(`1. this.ch=[    ${this.ch}]`);
         switch (this.ch) {
             case '=':
                 token = this.newToken(TokenConst.ASSIGN, this.ch);
@@ -44,6 +44,12 @@ export class Lexer {
                 break;
             case '-':
                 token = this.newToken(TokenConst.MINUS, this.ch);
+                break;
+            case '*':
+                token = this.newToken(TokenConst.ASTERISK, this.ch);
+                break;
+            case '/':
+                token = this.newToken(TokenConst.SLASH, this.ch);
                 break;
             case '(': 
                 token = this.newToken(TokenConst.LPAREN, this.ch);
@@ -65,6 +71,15 @@ export class Lexer {
                 break;
             case '\0':
                 token = {type: TokenConst.EOF, literal: ''};
+                break;
+            case '!':
+                token = this.newToken(TokenConst.BANG, this.ch);
+                break;
+            case '<':
+                token = this.newToken(TokenConst.LT, this.ch);
+                break;
+            case '>':
+                token = this.newToken(TokenConst.GT, this.ch);
                 break;
             default:
                 if (isLetter(this.ch)){

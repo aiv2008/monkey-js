@@ -8,6 +8,8 @@ function testNextToken() {
       x + y;
     };
     let result = add(five, ten);
+    !-/*5;
+    5 < 10 >5
     `;
     const tests: Token[] = [
       {type: TokenConst.LET, literal: "let"},
@@ -38,6 +40,32 @@ function testNextToken() {
       {type: TokenConst.SEMICOLON, literal: ";"},
       {type: TokenConst.RBRACE, literal: "}"},
       {type: TokenConst.SEMICOLON, literal: ";"},
+
+// let result = add(five, ten);
+      {type: TokenConst.LET, literal: "let"},
+      {type: TokenConst.IDENT, literal: "result"},
+      {type: TokenConst.ASSIGN, literal: "="},
+      {type: TokenConst.IDENT, literal: "add"},
+      {type: TokenConst.LPAREN, literal: "("},
+      {type: TokenConst.IDENT, literal: "five"},
+      {type: TokenConst.COMMA, literal: ","},
+      {type: TokenConst.IDENT, literal: "ten"},
+      {type: TokenConst.RPAREN, literal: ")"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
+
+      {type:TokenConst.BANG, literal: "!"},
+      {type:TokenConst.MINUS, literal: "-"},
+      {type:TokenConst.SLASH, literal: "/"},
+      {type:TokenConst.ASTERISK, literal: "*"},
+      {type:TokenConst.INT, literal: "5"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
+      {type:TokenConst.INT, literal: "5"},
+      {type:TokenConst.LT, literal: "<"},
+      {type:TokenConst.INT, literal: "10"},
+      {type:TokenConst.GT, literal: ">"},
+      {type:TokenConst.INT, literal: "5"},
+    //   !-/*5;
+    // 5 < 10 >5
     ];
 
     const lexer = new Lexer(input);
