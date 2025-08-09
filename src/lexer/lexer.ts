@@ -34,7 +34,7 @@ export class Lexer {
         let token: Token;
 
         this.skipWhitespace();
-        console.log(`this.ch=[${this.ch}]`);
+        console.log(`1. this.ch=[${this.ch}]`);
         switch (this.ch) {
             case '=':
                 token = this.newToken(TokenConst.ASSIGN, this.ch);
@@ -70,11 +70,14 @@ export class Lexer {
                 if (isLetter(this.ch)){
                     let ident = this.readIdentifier();
                     token = this.newToken(LookupIdent(ident), ident);
+                    return token;
                 }else if (isDigit(this.ch)){
                     token = this.newToken(TokenConst.INT, this.readNumber());
+                    return token;
                 }else{
                     token = this.newToken(TokenConst.ILLEGAL, this.ch );
                 }
+                break;
         }
 
         this.readChar();
@@ -98,7 +101,7 @@ export class Lexer {
         while(isDigit(this.ch)) {
             this.readChar();
         }
-        console.log(`ch1=${this.ch}`);
+        // console.log(`3.ch1=${this.ch}`);
         return this.input.slice(position, this.position);
     }
 }

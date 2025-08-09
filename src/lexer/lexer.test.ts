@@ -35,6 +35,7 @@ function testNextToken() {
       {type: TokenConst.IDENT, literal: "x"},
       {type: TokenConst.PLUS, literal: "+"},
       {type: TokenConst.IDENT, literal: "y"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
       {type: TokenConst.RBRACE, literal: "}"},
       {type: TokenConst.SEMICOLON, literal: ";"},
     ];
@@ -43,7 +44,7 @@ function testNextToken() {
 
     tests.forEach((test, index) => {
       const token = lexer.nextToken();
-      console.log(`tokenType:[${token.type}], testType:[${test.type}]`);
+      console.log(`2.tokenType:[${token.type}], testType:[${test.type},${test.literal}]`);
       if (token.type !== test.type){
         throw new Error(`Test ${index} failed. Expected ${test.type} but got ${token.type}`);
       }
