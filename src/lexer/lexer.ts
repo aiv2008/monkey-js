@@ -24,6 +24,15 @@ export class Lexer {
         this.readPosition += 1;
     }
 
+    //只窥看下一个字符，并不移动readPosition
+    private peekChar(): void {
+        if (this.readPosition >= this.input.length) {
+            this.ch = '\0';
+        } else {
+            this.ch = this.input[this.readPosition];
+        }
+    }
+
     private skipWhitespace(): void {
         while (this.ch === ' ' || this.ch === '\t' || this.ch === '\n' || this.ch === '\r') {
             this.readChar();
