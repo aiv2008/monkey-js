@@ -47,8 +47,11 @@ export class Lexer {
         switch (this.ch) {
             case '=':
                 if(this.peekChar() === '='){
+                    const ch = this.ch;
                     this.readChar();
-                    token = this.newToken(TokenConst.EQ, '==');
+                    const literal = ch + this.ch;
+                    token = this.newToken(TokenConst.EQ, literal);
+                    // token = this.newToken(TokenConst.EQ, '==');
                 }else{
                     token = this.newToken(TokenConst.ASSIGN, this.ch);
                 }
@@ -88,9 +91,10 @@ export class Lexer {
                 break;
             case '!':
                 if(this.peekChar() === '='){
+                    const ch = this.ch;
                     this.readChar();
-                    // return this.newToken(TokenConst.EQ, '!=');
-                    token = this.newToken(TokenConst.NOT_EQ, '!=');
+                    const literal = ch + this.ch;
+                    token = this.newToken(TokenConst.NOT_EQ, literal);
                 }else{
                     token = this.newToken(TokenConst.BANG, this.ch);
                 }
