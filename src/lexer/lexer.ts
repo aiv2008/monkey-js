@@ -41,9 +41,8 @@ export class Lexer {
 
     nextToken(): Token {
         let token: Token;
-
         this.skipWhitespace();
-        // console.log(`1. this.ch=[    ${this.ch}]`);
+        console.log(`1. this.ch=[    ${this.ch}]`);
         switch (this.ch) {
             case '=':
                 token = this.newToken(TokenConst.ASSIGN, this.ch);

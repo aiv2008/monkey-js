@@ -9,7 +9,12 @@ function testNextToken() {
     };
     let result = add(five, ten);
     !-/*5;
-    5 < 10 >5
+    5 < 10 >5;
+    if (5 < 10) {
+      return true;
+    } else {
+      return false;
+    }
     `;
     const tests: Token[] = [
       {type: TokenConst.LET, literal: "let"},
@@ -17,13 +22,11 @@ function testNextToken() {
       {type: TokenConst.ASSIGN, literal: "="},
       {type: TokenConst.INT, literal: "5"},
       {type: TokenConst.SEMICOLON, literal: ";"},
-      
       {type: TokenConst.LET, literal: "let"},
       {type: TokenConst.IDENT, literal: "ten"},
       {type: TokenConst.ASSIGN, literal: "="},
       {type: TokenConst.INT, literal: "10"},
       {type: TokenConst.SEMICOLON, literal: ";"},
-
       {type: TokenConst.LET, literal: "let"},
       {type: TokenConst.IDENT, literal: "add"},
       {type: TokenConst.ASSIGN, literal: "="},
@@ -40,8 +43,6 @@ function testNextToken() {
       {type: TokenConst.SEMICOLON, literal: ";"},
       {type: TokenConst.RBRACE, literal: "}"},
       {type: TokenConst.SEMICOLON, literal: ";"},
-
-// let result = add(five, ten);
       {type: TokenConst.LET, literal: "let"},
       {type: TokenConst.IDENT, literal: "result"},
       {type: TokenConst.ASSIGN, literal: "="},
@@ -52,7 +53,6 @@ function testNextToken() {
       {type: TokenConst.IDENT, literal: "ten"},
       {type: TokenConst.RPAREN, literal: ")"},
       {type: TokenConst.SEMICOLON, literal: ";"},
-
       {type:TokenConst.BANG, literal: "!"},
       {type:TokenConst.MINUS, literal: "-"},
       {type:TokenConst.SLASH, literal: "/"},
@@ -64,8 +64,29 @@ function testNextToken() {
       {type:TokenConst.INT, literal: "10"},
       {type:TokenConst.GT, literal: ">"},
       {type:TokenConst.INT, literal: "5"},
-    //   !-/*5;
-    // 5 < 10 >5
+      {type: TokenConst.SEMICOLON, literal: ";"},
+      {type: TokenConst.IF, literal: "if"},
+      {type: TokenConst.LPAREN, literal: "("},
+      {type: TokenConst.INT, literal: "5"},
+      {type: TokenConst.LT, literal: "<"},
+      {type: TokenConst.INT, literal: "10"},
+      {type: TokenConst.RPAREN, literal: ")"},
+      {type: TokenConst.LBRACE, literal: "{"},
+      {type: TokenConst.RETURN, literal: "return"},
+      {type: TokenConst.TRUE, literal: "true"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
+      {type: TokenConst.RBRACE, literal: "}"},
+      {type: TokenConst.ELSE, literal: "else"},
+      {type: TokenConst.LBRACE, literal: "{"},
+      {type: TokenConst.RETURN, literal: "return"},
+      {type: TokenConst.FALSE, literal: "false"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
+      {type: TokenConst.RBRACE, literal: "}"},
+// if (5 < 10) {
+//       return true;
+//     } else {
+//       return false;
+//     }
     ];
 
     const lexer = new Lexer(input);
