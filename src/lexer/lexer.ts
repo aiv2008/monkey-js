@@ -25,11 +25,12 @@ export class Lexer {
     }
 
     //只窥看下一个字符，并不移动readPosition
-    private peekChar(): void {
+    private peekChar(): string {
+        
         if (this.readPosition >= this.input.length) {
-            this.ch = '\0';
+            return '\0';
         } else {
-            this.ch = this.input[this.readPosition];
+            return this.input[this.readPosition];
         }
     }
 
@@ -45,11 +46,12 @@ export class Lexer {
         console.log(`1. this.ch=[    ${this.ch}]`);
         switch (this.ch) {
             case '=':
-                // if(this.peekChar() === '='){
-                //     this.readChar();
-                //     token = this.newToken(TokenConst.EQ, this.ch);
-                // }
-                token = this.newToken(TokenConst.ASSIGN, this.ch);
+                if(this.peekChar() === '='){
+                    this.readChar();
+                    token = this.newToken(TokenConst.EQ, '==');
+                }else{
+                    token = this.newToken(TokenConst.ASSIGN, this.ch);
+                }
                 break;
             case '+':
                 token = this.newToken(TokenConst.PLUS, this.ch);
@@ -85,7 +87,13 @@ export class Lexer {
                 token = {type: TokenConst.EOF, literal: ''};
                 break;
             case '!':
-                token = this.newToken(TokenConst.BANG, this.ch);
+                if(this.peekChar() === '='){
+                    this.readChar();
+                    // return this.newToken(TokenConst.EQ, '!=');
+                    token = this.newToken(TokenConst.NOT_EQ, '!=');
+                }else{
+                    token = this.newToken(TokenConst.BANG, this.ch);
+                }
                 break;
             case '<':
                 token = this.newToken(TokenConst.LT, this.ch);
