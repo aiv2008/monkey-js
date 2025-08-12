@@ -15,6 +15,8 @@ function testNextToken() {
     } else {
       return false;
     }
+      10 == 10;
+      10 != 9;
     `;
     const tests: Token[] = [
       {type: TokenConst.LET, literal: "let"},
@@ -82,11 +84,14 @@ function testNextToken() {
       {type: TokenConst.FALSE, literal: "false"},
       {type: TokenConst.SEMICOLON, literal: ";"},
       {type: TokenConst.RBRACE, literal: "}"},
-// if (5 < 10) {
-//       return true;
-//     } else {
-//       return false;
-//     }
+      {type: TokenConst.INT, literal: "10"},
+      {type: TokenConst.EQ, literal: "=="},
+      {type: TokenConst.INT, literal: "10"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
+      {type: TokenConst.INT, literal: "10"},
+      {type: TokenConst.NOT_EQ, literal: "!="},
+      {type: TokenConst.INT, literal: "9"},
+      {type: TokenConst.SEMICOLON, literal: ";"},
     ];
 
     const lexer = new Lexer(input);

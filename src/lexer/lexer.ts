@@ -45,6 +45,10 @@ export class Lexer {
         console.log(`1. this.ch=[    ${this.ch}]`);
         switch (this.ch) {
             case '=':
+                // if(this.peekChar() === '='){
+                //     this.readChar();
+                //     token = this.newToken(TokenConst.EQ, this.ch);
+                // }
                 token = this.newToken(TokenConst.ASSIGN, this.ch);
                 break;
             case '+':
